@@ -1,0 +1,20 @@
+﻿version: "3.4"
+services:
+    api:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "8080:80"
+        depends_on:
+          - backend-db
+    backend-db:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        container_name: sqlserver
+        hostname: DESKTOP-8SN2U77.local
+        environment:
+             - ACCEPT_EULA=Shy
+             - MSSQL_SA_PASSWORD=1234567
+        ports:
+          - "1433:1433"
+        
